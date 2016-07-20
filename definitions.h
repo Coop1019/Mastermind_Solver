@@ -5,6 +5,8 @@
 #ifndef MASTERMIND_SOLVER_DEFINITIONS_H
 #define MASTERMIND_SOLVER_DEFINITIONS_H
 
+int currentGuess=0;
+
 struct partOfGuess{
     int color=0; // 1=Pink, 2=Orange, 3=Yellow, 4=Green, 5=Blue, 6=Purple
 };
@@ -13,42 +15,82 @@ struct guess{
     int _2;
     int _3;
     int _4;
+    int whiteCorrectColor;
+    int redCorrectColorandPlacement;
 };
 
-int dig_1 = 1;
-int dig_2 = 1;
-int dig_3 = 1;
-int dig_4 = 1;
+struct levelGuess{
+    struct guess *numbersChosen;
+    int whiteCorrectColor;
+    int redCorrectColorandPlacement;
+};
 
-int numCounter=0;
-guess allGuesses[1296];
+struct digit{
+    int A=1;
+    int B=1;
+    int C=1;
+    int D=1;
+    int E=1;
+    int F=1;
+    int color;
+};
 
-void generateNumberSet() {
-
-        for (int d1 = 1; d1<7; d1++){
-            for (int d2 = 1; d2<7; d2++){
-                for (int d3 = 1; d3<7; d3++){
-                    for (int d4 = 1; d4<7;d4++){
-                        allGuesses[numCounter]._1=d1;
-                        allGuesses[numCounter]._2=d2;
-                        allGuesses[numCounter]._3=d3;
-                        allGuesses[numCounter]._4=d4;
-
-                        cout << allGuesses[numCounter]._1 << allGuesses[numCounter]._2 << allGuesses[numCounter]._3 << allGuesses[numCounter]._4 <<endl;
-
-
-                        numCounter++;
-                    }
-                }
-            }
-        }
-
-
-}
+digit digit1;
+digit digit2;
+digit digit3;
+digit digit4;
 
 void generateRandomInitialStart(){
     srand(time(NULL));
-    int choice = rand() % 1296;
-    cout << allGuesses[choice]._1 << allGuesses[choice]._2 << allGuesses[choice]._3 << allGuesses[choice]._4 << endl;
+    int x=0;
+    int choice;
+    while (x==0) {
+        int choice = rand() % 6;
+        if (choice==1){
+            if (digit1.A==1){
+                x=1;
+            }
+        }
+        if (choice==2){
+            if (digit1.B==1){
+                x=1;
+            }
+        }
+        if (choice==3){
+            if (digit1.C==1){
+                x=1;
+            }
+        }
+        if (choice==4){
+            if (digit1.D==1){
+                x=1;
+            }
+        }
+        if (choice==5){
+            if (digit1.E==1){
+                x=1;
+            }
+        }
+        if (choice==6){
+            if (digit1.F==1){
+                x=1;
+            }
+        }
+    }
+    int choice2 = rand() % 6;
+    int choice3 = rand() % 6;
+    int choice4 = rand() % 6;
+
+    digit1.color = choice;
+    digit2.color = choice2;
+    digit3.color = choice3;
+    digit4.color = choice4;
+
+
 }
+void getRed(){
+    cout << "Red: \n";
+    //cin >>
+}
+
 #endif //MASTERMIND_SOLVER_DEFINITIONS_H
