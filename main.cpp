@@ -6,22 +6,11 @@ using namespace std;
 #include "definitions.h"
 
 int main() {
+    int done = 0;
+    while (done==0) {
+        done = generateSemiRandomGuess();
+    }
 
-    generateNumberSet();
-    generateRandomInitialStart();
-    getAnswer();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
-    generateGuess();
 
     return 0;
 }
