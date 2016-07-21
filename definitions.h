@@ -5,6 +5,9 @@
 #ifndef MASTERMIND_SOLVER_DEFINITIONS_H
 #define MASTERMIND_SOLVER_DEFINITIONS_H
 
+#include "fileLogger.h"
+
+
 int currentGuess=0;
 
 int counter = 0;
@@ -41,18 +44,20 @@ struct digit{
     int color;
 };
 
+int choice;
+int choice2;
+int choice3;
+int choice4;
+
 digit digit1;
 digit digit2;
 digit digit3;
 digit digit4;
 
-int generateSemiRandomGuess(){
+int generateSequence(){
     srand(time(NULL));
     int x=0;
-    int choice;
-    int choice2;
-    int choice3;
-    int choice4;
+
     while (x==0) {
         choice = (rand() % 6)+1;
         if (choice==1){
@@ -194,20 +199,31 @@ int generateSemiRandomGuess(){
     digit2.color = choice2;
     digit3.color = choice3;
     digit4.color = choice4;
+    writeNumbertoFile(choice,choice2,choice3,choice4);
 
-    cout << "Guess: " << digit1.color << digit2.color << digit3.color << digit4.color << endl;
-    counter++;
+}
 
-    int redReturned = getRed();
-    if (redReturned==1){
-        cout << "I won in " << counter << " moves!\n";
-        return 1;
+int generateSemiRandomGuess(){
+
+    int shouldIGoAgain = 1;
+    while (shouldIGoAgain==1) {
+        generateSequence();
+        shouldIGoAgain = readFromFile(choice, choice2, choice3, choice4);
+
+
+        cout << "Guess: " << digit1.color << digit2.color << digit3.color << digit4.color << endl;
+        counter++;
+
+        int redReturned = getRed();
+        if (redReturned == 1) {
+            cout << "I won in " << counter << " moves!\n";
+            return 1;
+        }
+        if (redReturned == 0) {
+            getWhite();
+        }
+        return 0;
     }
-    if (redReturned==0){
-        getWhite();
-    }
-    return 0;
-
 
 
 }

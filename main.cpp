@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 
 using namespace std;
@@ -7,6 +8,7 @@ using namespace std;
 
 int main() {
     int done = 0;
+    openFile();
     while (done==0) {
         done = generateSemiRandomGuess();
     }
