@@ -199,7 +199,7 @@ int generateSequence(){
     digit2.color = choice2;
     digit3.color = choice3;
     digit4.color = choice4;
-    writeNumbertoFile(choice,choice2,choice3,choice4);
+
 
 }
 
@@ -208,15 +208,19 @@ int generateSemiRandomGuess(){
     int shouldIGoAgain = 1;
     while (shouldIGoAgain==1) {
         generateSequence();
+        cout << "NOT Guess: " << digit1.color << digit2.color << digit3.color << digit4.color << endl;
         shouldIGoAgain = readFromFile(choice, choice2, choice3, choice4);
+        cout << "Go Again?" << shouldIGoAgain << endl;
+    }
 
 
         cout << "Guess: " << digit1.color << digit2.color << digit3.color << digit4.color << endl;
+    writeNumbertoFile(choice,choice2,choice3,choice4);
         counter++;
 
         int redReturned = getRed();
         if (redReturned == 1) {
-            cout << "I won in " << counter << " moves!\n";
+            clog << "I won in " << counter << " moves!\n";
             return 1;
         }
         if (redReturned == 0) {
@@ -225,8 +229,6 @@ int generateSemiRandomGuess(){
         return 0;
     }
 
-
-}
 int getRed(){
     int redColors;
     cout << "Red: \n";
